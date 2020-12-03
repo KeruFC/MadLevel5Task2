@@ -22,7 +22,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    //private val viewModel: GameViewModel by viewModels()
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,10 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_delete_all -> {
+                viewModel.deleteAllGames()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
