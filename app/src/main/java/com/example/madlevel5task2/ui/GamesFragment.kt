@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madlevel5task2.R
@@ -19,6 +20,10 @@ import com.example.madlevel5task2.model.GameViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_games.*
 import kotlinx.android.synthetic.main.item_game.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -52,6 +57,8 @@ class GamesFragment : Fragment() {
         gameAdapter = GameAdapter(games)
         rvGames.adapter = gameAdapter
         rvGames.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        createItemTouchHelper().attachToRecyclerView(rvGames)
     }
 
     private fun observeAddGameResult() {
@@ -60,5 +67,29 @@ class GamesFragment : Fragment() {
             this.games.addAll(gamesAvailable)
             gameAdapter.notifyDataSetChanged()
         })
+    }
+
+    private fun createItemTouchHelper(): ItemTouchHelper {
+        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    withContext(Dispatchers.IO) {
+                        viewModel.deleteGame(games[position])
+                    }
+                }
+            }
+        }
+
+        return ItemTouchHelper(callback)
     }
 }
