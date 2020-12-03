@@ -13,7 +13,7 @@ interface GameDao {
     suspend fun insertGame(game: Game)
 
     @Query("SELECT * FROM gameTable LIMIT 1")
-    fun getNotepad(): LiveData<Game?>
+    fun getAllGames(): LiveData<List<Game>>
 
     @Query("DELETE FROM gameTable")
     suspend fun deleteGames()
