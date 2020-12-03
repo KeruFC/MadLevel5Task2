@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.FirstFragment -> {
-                    supportActionBar?.title = "Game Backlog"
+                    supportActionBar?.title = getString(R.string.game_backlog)
                     menu.findItem(R.id.action_delete_all).isVisible = true
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setDisplayShowHomeEnabled(true)
                 }
                 R.id.SecondFragment -> {
-                    supportActionBar?.title = "Add Game"
+                    supportActionBar?.title = getString(R.string.add_game)
                     menu.findItem(R.id.action_delete_all).isVisible = false
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     supportActionBar?.setDisplayShowHomeEnabled(true)
