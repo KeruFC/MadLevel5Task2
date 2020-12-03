@@ -12,15 +12,17 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.madlevel5task2.R
-import com.example.madlevel5task2.model.GamesViewModel
+import com.example.madlevel5task2.model.Game
+import com.example.madlevel5task2.model.GameViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_game.*
 import java.lang.NullPointerException
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    private val viewModel: GamesViewModel by viewModels()
+    //private val viewModel: GameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,47 +44,14 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.FirstFragment -> {
-                    fab.setImageResource(android.R.drawable.ic_menu_edit)
-                    fab.setOnClickListener {
-                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                        supportActionBar?.setDisplayShowHomeEnabled(true)
-                        navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
-                    }
-                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                    supportActionBar?.setDisplayShowHomeEnabled(false)
+                    //niks
                 }
                 R.id.SecondFragment -> {
-                    val date = Calendar.getInstance()
+                    // niks
 
-                    fab.setImageResource(android.R.drawable.ic_menu_save)
-                    fab.setOnClickListener {
-                        var day = editTextDay.text.toString()
-                        if(day.isBlank()){
-                            day = "0"
-                        }
-                        date.set(Calendar.DAY_OF_MONTH, Integer.parseInt(day))
-                        var month = editTextMonth.text.toString()
-                        if(month.isBlank()){
-                            month = "0"
-                        }
-                        date.set(Calendar.MONTH, Integer.parseInt(month))
-                        var year = editTextYear.text.toString()
-                        if(year.isBlank()){
-                            year = "0"
-                        }
-                        date.set(Calendar.YEAR, Integer.parseInt(year))
-
-                        viewModel.insertGameBackLog(
-                            tilGameTitle.editText.toString(),
-                            tilGamePlatform.editText.toString(),
-                            Date.from(date.toInstant())
-                        )
-
-                        navController.navigate(R.id.action_SecondFragment_to_FirstFragment)
                     }
                 }
             }
-        }
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

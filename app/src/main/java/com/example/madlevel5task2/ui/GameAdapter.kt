@@ -1,12 +1,16 @@
 package com.example.madlevel5task2.ui
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madlevel5task2.R
 import com.example.madlevel5task2.model.Game
 import kotlinx.android.synthetic.main.item_game.view.*
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 
 class GameAdapter(private val games: List<Game>) :
@@ -14,23 +18,11 @@ class GameAdapter(private val games: List<Game>) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun databind(game: Game) {
-
-            val date: Calendar = Calendar.getInstance()
-            date.time = game.date
-            val day = date.get(Calendar.DAY_OF_WEEK)
-            val month = date.get(Calendar.MONTH)
-            val year = date.get(Calendar.YEAR)
-
-            itemView.tvGame.text = game.title
+            itemView.tvReleaseDate.text = game.date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
             itemView.tvPlatforms.text = game.platform
-            itemView.tvReleaseDate.text =
-                String.format(
-                    "Release: %s %s %s",
-                    day,
-                    month,
-                    year
-                )
+            itemView.tvGame.text = game.title
         }
     }
 
@@ -40,6 +32,7 @@ class GameAdapter(private val games: List<Game>) :
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.databind(games[position])
     }
