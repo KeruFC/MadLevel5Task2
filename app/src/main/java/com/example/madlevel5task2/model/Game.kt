@@ -11,12 +11,8 @@ data class Game (
     var title: String,
     @ColumnInfo(name = "platform")
     var platform: String,
-    @ColumnInfo(name = "day")
-    var day: Int,
-    @ColumnInfo(name = "month")
-    var month: Int,
-    @ColumnInfo(name = "year")
-    var year: Int,
+    @ColumnInfo(name = "date")
+    var date: Date,
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Long? = null

@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.AddGameFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save"
-        app:tint="#FFFFFF" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
         android:layout_height="219dp"
@@ -70,13 +59,13 @@
             android:hint="Day">
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/editTextDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:maxLength="2"
-                android:inputType="number" />
+                android:inputType="numberSigned" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,13 +81,13 @@
             android:translationX="120dp">
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/editTextMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:maxLength="2"
-                android:inputType="number" />
+                android:inputType="numberSigned" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,13 +103,13 @@
             android:translationX="235dp">
 
             <EditText
-                android:id="@+id/editTextNumber3"
+                android:id="@+id/editTextYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:maxLength="4"
-                android:inputType="number" />
+                android:inputType="numberSigned" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

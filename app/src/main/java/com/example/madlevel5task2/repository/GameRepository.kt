@@ -7,7 +7,7 @@ import com.example.madlevel5task2.database.GamesRoomDatabase
 import com.example.madlevel5task2.model.Game
 
 
-class GameBacklogRepository(context: Context) {
+class GameRepository(context: Context) {
     private val gameDao: GameDao
 
     init {
