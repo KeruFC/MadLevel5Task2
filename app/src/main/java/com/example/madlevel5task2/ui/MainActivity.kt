@@ -44,16 +44,22 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.FirstFragment -> {
-                    //niks
+                    supportActionBar?.title = "Game Backlog"
+                    menu.findItem(R.id.action_delete_all).isVisible = true
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                    supportActionBar?.setDisplayShowHomeEnabled(true)
                 }
                 R.id.SecondFragment -> {
-                    // niks
-
+                    supportActionBar?.title = "Add Game"
+                    menu.findItem(R.id.action_delete_all).isVisible = false
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                    supportActionBar?.setDisplayShowHomeEnabled(true)
                     }
                 }
             }
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -65,5 +71,10 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
